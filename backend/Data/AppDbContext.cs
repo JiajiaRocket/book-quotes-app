@@ -9,6 +9,7 @@ namespace backend.Data
         {
         }
 
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; } //inform the database that we have a table called Books
+        public DbSet<User> Users { get; set; }
     }
 }
