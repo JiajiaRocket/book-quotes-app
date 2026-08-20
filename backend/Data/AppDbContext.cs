@@ -10,6 +10,7 @@ namespace backend.Data
         }
 
         public DbSet<Book> Books { get; set; } //inform the database that we have a table called Books
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } //inform the database that we have a table called Users
+        public DbSet<Quote> Quotes { get; set; } //inform the database that we have a table called Quotes
     }
 }
