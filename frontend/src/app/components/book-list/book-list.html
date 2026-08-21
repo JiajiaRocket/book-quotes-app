@@ -1,1 +1,28 @@
-<p>book-list works!</p>
+<div class="book-list-container">
+  <h2>Books</h2>
+
+  <form (ngSubmit)="addBook()">
+    <input type="text" [(ngModel)]="newTitle" name="newTitle" placeholder="Title" required>
+    <input type="text" [(ngModel)]="newAuthor" name="newAuthor" placeholder="Author" required>
+    <input type="date" [(ngModel)]="newPublishedDate" name="newPublishedDate" required>
+    <button type="submit">Add Book</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let book of books">
+      <div *ngIf="editingId !== book.id">
+        {{ book.title }} — {{ book.author }} ({{ book.publishedDate }})
+        <button (click)="startEdit(book)">Edit</button>
+        <button (click)="deleteBook(book.id)">Delete</button>
+      </div>
+
+      <div *ngIf="editingId === book.id">
+        <input type="text" [(ngModel)]="editTitle" name="editTitle{{ book.id }}">
+        <input type="text" [(ngModel)]="editAuthor" name="editAuthor{{ book.id }}">
+        <input type="date" [(ngModel)]="editPublishedDate" name="editPublishedDate{{ book.id }}">
+        <button (click)="saveEdit(book.id)">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</div>
