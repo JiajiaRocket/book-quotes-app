@@ -1,25 +1,51 @@
-<div class="my-quotes-container">
-  <h2>My Quotes</h2>
+<div class="container mt-4">
+  <h2 class="mb-4"><i class="fa-solid fa-quote-left"></i> My Quotes</h2>
 
-  <form (ngSubmit)="addQuote()">
-    <input type="text" [(ngModel)]="newText" name="newText" placeholder="Quote text" required>
-    <input type="text" [(ngModel)]="newAuthor" name="newAuthor" placeholder="Author" required>
-    <button type="submit">Add Quote</button>
+  <form (ngSubmit)="addQuote()" class="row g-2 mb-4">
+    <div class="col-md-5">
+      <input type="text" class="form-control" [(ngModel)]="newText" name="newText" placeholder="Quote text" required>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="newAuthor" name="newAuthor" placeholder="Author" required>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="fa-solid fa-plus"></i> Add Quote
+      </button>
+    </div>
   </form>
 
-  <ul>
-    <li *ngFor="let quote of quotes">
-      <div *ngIf="editingId !== quote.id">
-        "{{ quote.text }}" — {{ quote.author }}
-        <button (click)="startEdit(quote)">Edit</button>
-        <button (click)="deleteQuote(quote.id)">Delete</button>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let quote of quotes">
+      <div *ngIf="editingId !== quote.id" class="d-flex justify-content-between align-items-center">
+        <span>
+          "{{ quote.text }}" — <strong>{{ quote.author }}</strong>
+        </span>
+        <span>
+          <button class="btn btn-sm btn-warning me-2" (click)="startEdit(quote)">
+            <i class="fa-solid fa-pen"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteQuote(quote.id)">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+        </span>
       </div>
 
-      <div *ngIf="editingId === quote.id">
-        <input type="text" [(ngModel)]="editText" name="editText{{ quote.id }}">
-        <input type="text" [(ngModel)]="editAuthor" name="editAuthor{{ quote.id }}">
-        <button (click)="saveEdit(quote.id)">Save</button>
-        <button (click)="cancelEdit()">Cancel</button>
+      <div *ngIf="editingId === quote.id" class="row g-2 align-items-center">
+        <div class="col-md-5">
+          <input type="text" class="form-control" [(ngModel)]="editText" name="editText{{ quote.id }}">
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" [(ngModel)]="editAuthor" name="editAuthor{{ quote.id }}">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-sm btn-success me-2" (click)="saveEdit(quote.id)">
+            <i class="fa-solid fa-check"></i> Save
+          </button>
+          <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">
+            <i class="fa-solid fa-xmark"></i> Cancel
+          </button>
+        </div>
       </div>
     </li>
   </ul>

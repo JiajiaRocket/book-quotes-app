@@ -1,5 +1,12 @@
-<nav *ngIf="isLoggedIn()">
-  <a routerLink="/books">Books</a>
-  <a routerLink="/quotes">My Quotes</a>
-  <button (click)="logout()">Logout</button>
+<nav *ngIf="isLoggedIn()" class="navbar navbar-expand navbar-dark bg-dark px-3">
+  <span class="navbar-brand">
+    <i class="fa-solid fa-book"></i> Book Quotes App
+  </span>
+  <div class="navbar-nav">
+    <a class="nav-link" routerLink="/books" routerLinkActive="active">Books</a>
+    <a class="nav-link" routerLink="/quotes" routerLinkActive="active">My Quotes</a>
+  </div>
+  <button class="btn btn-outline-light ms-auto" (click)="logout()">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+  </button>
 </nav>
